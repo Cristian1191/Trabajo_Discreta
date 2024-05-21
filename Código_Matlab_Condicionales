@@ -1,0 +1,74 @@
+% Impresión del encabezado del programa
+fprintf("###############################\n");
+fprintf("#       FINANCE TRACKER       #\n");
+fprintf("###############################\n");
+% Entrada de datos del usuario
+costo_alquiler = input("¿Cuánto pagas de alquiler? ");
+plan_cel = input("¿Cuánto pagas de tu plan de celular? ");
+ocio = input("¿Cuánto gastas en ocio mensual? ");
+alimentacion = input("¿Cuánto gastas en comida(s-d)? ");
+alimentacion = alimentacion * 4;
+clases = input("¿Tienes clases hoy? ", 's');  % Solicitar si hay clases hoy (respuesta en cadena de texto)
+pasaje = containers.Map({'A', 'B', 'C', 'D', 'E'}, [3.5, 4, 2.5, 5, 0]);  % Mapa de rutas y costos de pasaje
+costo_dia = 0;
+% Si hay clases hoy
+if strcmp(clases, "Si")
+    disp(pasaje.keys);  % Mostrar las rutas disponibles
+    r = input("Elige tu ruta (A/B/C/D/E): ", 's');  % Solicitar la ruta elegida
+    if isKey(pasaje, r)  % Verificar si la ruta es válida
+        costo_dia = costo_dia + pasaje(r) * 2;  % Calcular el costo del pasaje de ida y vuelta
+        cm = input("¿Tienes clase en la mañana? ", 's');  % Preguntar si hay clase en la mañana
+        if strcmp(cm, "Si")
+            horas_clase = input("¿Cuántas horas dura tu clase? ");
+            if horas_clase >= 4
+                tc = input("¿Sacaste ticket del comedor? ", 's');
+                if strcmp(tc, "No")
+                    comida = input("¿Cuánto gastarás de tu almuerzo? ");
+                    costo_dia = costo_dia + comida;
+                    ct = input("¿Tienes clase también en la tarde? ", 's');
+                    if strcmp(ct, "Si")
+                        hc = input("¿Cuántas horas dura tu clase? ");
+                        if hc >= 3
+                            tc = input("¿Sacaste ticket de cena? ", 's');
+                            if strcmp(tc, "No")
+                                comida = input("¿Cuánto gastarás de tu cena? ");
+                                costo_dia = costo_dia + comida;
+                            end
+                        else
+                            fprintf("Anda a tu cuarto\n");
+                        end
+                    end
+                end
+            else
+                fprintf("Anda a tu cuarto\n");
+            end
+        else
+            tc = input("¿Sacaste ticket de cena? ", 's');
+            if strcmp(tc, "No")
+                comida = input("¿Cuánto gastarás de tu cena? ");
+                costo_dia = costo_dia + comida;
+            end
+        end
+    end
+else
+    fprintf("Sigue durmiendo\n");
+end
+
+% Calcular el gasto mensual de la universidad
+gasto_men_uni = costo_dia * 20;
+
+% Calcular el gasto total
+total = costo_alquiler + plan_cel + ocio + alimentacion + gasto_men_uni;
+
+% Impresión del resumen de gastos
+fprintf("###############################\n");
+fprintf("#       FINANCE TRACKER       #\n");
+fprintf("#-----------------------------#\n");
+fprintf("# 1.- Alquiler          %.2f #\n", costo_alquiler);
+fprintf("# 2.- Plan celular      %.2f #\n", plan_cel);
+fprintf("# 3.- Ocio              %.2f #\n", ocio);
+fprintf("# 4.- Universidad       %.2f #\n", gasto_men_uni);
+fprintf("# 5.- Alimentacion      %.2f #\n", alimentacion);
+fprintf("#-----------------------------#\n");
+fprintf("# Total:               %.2f #\n", total);
+fprintf("###############################\n");
