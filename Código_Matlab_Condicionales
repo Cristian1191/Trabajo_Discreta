@@ -12,10 +12,10 @@ clases = input("¿Tienes clases hoy? ", 's');  % Solicitar si hay clases hoy (re
 pasaje = containers.Map({'A', 'B', 'C', 'D', 'E'}, [3.5, 4, 2.5, 5, 0]);  % Mapa de rutas y costos de pasaje
 costo_dia = 0;
 % Si hay clases hoy
-if strcmp(clases, "Si")
+if strcmp(clases, "Si") % strcmp es una función que se utiliza para comparar dos cadenas de texto y determinar si son idénticas. Devuelve un valor lógico (true o false)
     disp(pasaje.keys);  % Mostrar las rutas disponibles
     r = input("Elige tu ruta (A/B/C/D/E): ", 's');  % Solicitar la ruta elegida
-    if isKey(pasaje, r)  % Verificar si la ruta es válida
+    if isKey(pasaje, r)  % Verificar si la ruta es válida  %isKey para verificar si un contenedor de tipo diccionario (o mapa) contiene una clave específica
         costo_dia = costo_dia + pasaje(r) * 2;  % Calcular el costo del pasaje de ida y vuelta
         cm = input("¿Tienes clase en la mañana? ", 's');  % Preguntar si hay clase en la mañana
         if strcmp(cm, "Si")
