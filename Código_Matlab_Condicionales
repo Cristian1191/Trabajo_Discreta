@@ -9,7 +9,7 @@ ocio = input("¿Cuánto gastas en ocio mensual? ");
 alimentacion = input("¿Cuánto gastas en comida(s-d)? ");
 alimentacion = alimentacion * 4;
 clases = input("¿Tienes clases hoy? ", 's');  % Solicitar si hay clases hoy (respuesta en cadena de texto)
-pasaje = containers.Map({'A', 'B', 'C', 'D', 'E'}, [3.5, 4, 2.5, 5, 0]);  % Mapa de rutas y costos de pasaje
+pasaje = containers.Map({'A', 'B', 'C', 'D', 'E'}, [3.5, 4, 2.5, 5, 0]);  % Mapa de rutas y costos de pasaje %Se utiliza para transformar los elementos de un array (o matriz)
 costo_dia = 0;
 % Si hay clases hoy
 if strcmp(clases, "Si") % strcmp es una función que se utiliza para comparar dos cadenas de texto y determinar si son idénticas. Devuelve un valor lógico (true o false)
