@@ -1,0 +1,104 @@
+Algoritmo FinanceTracker
+    // Declaración de variables
+    Definir costo_alquiler, plan_cel, ocio, alimentacion, costo_dia, gasto_men_uni, total,r Como Real
+    Definir clases Como Caracter
+    Definir horas_clase Como Entero
+    Definir tc Como Caracter
+	
+    // Impresión del encabezado del programa
+    Escribir "###############################"
+    Escribir "#       FINANCE TRACKER       #"
+    Escribir "###############################"
+	
+    // Entrada de datos del usuario
+    Escribir "¿Cuánto pagas de alquiler? "
+    Leer costo_alquiler
+    Escribir "¿Cuánto pagas de tu plan de celular? "
+    Leer plan_cel
+    Escribir "¿Cuánto gastas en ocio mensual? "
+    Leer ocio
+    Escribir "¿Cuánto gastas en comida(s-d)? "
+    Leer alimentacion
+    alimentacion <- alimentacion * 4
+	
+    Escribir "¿Tienes clases hoy? (Si/No) "
+    Leer clases
+	
+    // Si hay clases hoy
+    Si clases = "Si" Entonces
+        Dimension pasaje[5]
+        pasaje[1] <- 3.5
+        pasaje[2] <- 4
+        pasaje[3] <- 2.5
+        pasaje[4] <- 5
+        pasaje[5] <- 0
+        Dimension rutas[5]
+		rutas[1] <- 1
+        rutas[2] <- 2
+        rutas[3] <- 3
+        rutas[4] <- 4
+        rutas[5] <- 5
+        Escribir "Elige tu ruta (1/2/3/4/5): "
+        Leer r
+        // Para cada ruta
+        Para i <- 1 Hasta 5 Con Paso 1 Hacer
+            // Si la ruta coincide
+            Si rutas[i] = r Entonces
+                // Calcular el costo del día
+                costo_dia <- costo_dia + pasaje[i] * 2
+            FinSi
+        FinPara
+		
+        Escribir "¿Tienes clase en la mañana? (Si/No) "
+        Leer tc
+        Si tc = "Si" Entonces
+            Escribir "¿Cuántas horas dura tu clase? "
+            Leer horas_clase
+            Si horas_clase >= 4 Entonces
+                Escribir "¿Sacaste ticket del comedor? (Si/No) "
+                Leer tc
+                Si tc = "No" Entonces
+                    Escribir "¿Cuánto gastarás de tu almuerzo? "
+                    Leer comida
+                    costo_dia <- costo_dia + comida
+                    Escribir "¿Tienes clase también en la tarde? (Si/No) "
+                    Leer tc
+                    Si tc = "Si" Entonces
+                        Escribir "¿Cuántas horas dura tu clase? "
+                        Leer horas_clase
+                        Si horas_clase >= 3 Entonces
+                            Escribir "¿Sacaste ticket de cena? (Si/No) "
+                            Leer tc
+                            Si tc = "No" Entonces
+                                Escribir "¿Cuánto gastarás de tu cena? "
+                                Leer comida
+                                costo_dia <- costo_dia + comida
+                            FinSi
+                        FinSi
+                    FinSi
+                FinSi
+            FinSi
+        FinSi
+    Sino
+        Escribir "Sigue durmiendo"
+    FinSi
+	
+    // Calcular el gasto mensual de la universidad
+    gasto_men_uni <- costo_dia * 20
+	
+    // Calcular el gasto total
+    total <- costo_alquiler + plan_cel + ocio + alimentacion + gasto_men_uni
+	
+    // Impresión del resumen de gastos
+    Escribir "###############################"
+    Escribir "#       FINANCE TRACKER       #"
+    Escribir "#-----------------------------#"
+    Escribir "# 1.- Alquiler          ", costo_alquiler, " #"
+    Escribir "# 2.- Plan celular      ", plan_cel, " #"
+    Escribir "# 3.- Ocio              ", ocio, " #"
+    Escribir "# 4.- Universidad       ", gasto_men_uni, " #"
+    Escribir "# 5.- Alimentacion      ", alimentacion, " #"
+    Escribir "#-----------------------------#"
+    Escribir "# Total:               ", total, " #"
+    Escribir "###############################"
+FinAlgoritmo
